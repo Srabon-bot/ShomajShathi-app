@@ -5,4 +5,6 @@ export const site = {
   description:
     "Plan a cleanup, plant a hundred saplings, or collect winter clothes — then find the people who will show up with you.",
   location: "Dhaka, Bangladesh",
+  email: "hello@shomajshathi.org",
+  xUrl: "https://x.com/",
 } as const;
