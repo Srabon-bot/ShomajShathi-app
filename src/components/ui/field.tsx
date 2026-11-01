@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Check, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Label } from "@/components/ui/label";
 
 /**
  * The shadcn `input` / `textarea` shells with the box removed. A field is an
@@ -106,9 +107,9 @@ export function Field({
         )}
       >
         <div className="flex items-baseline gap-2">
-          <label htmlFor={htmlFor} className="t-label text-muted">
+          <Label htmlFor={htmlFor}>
             {label}
-          </label>
+          </Label>
           {required ? (
             <span className="t-label text-[9px] text-subtle">Required</span>
           ) : null}
