@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { JoinButton } from "@/components/events/join-button";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { EmptyState } from "@/components/ui/states";
@@ -49,11 +50,7 @@ function EventContent({ event }: { event: EventItem }) {
         <p className="t-body mt-8 max-w-2xl">{event.description}</p>
       </div>
       <aside className="h-fit border border-rule bg-surface p-5 lg:sticky lg:top-24">
-        <p className="t-label text-muted">Places</p>
-        <p className="t-figure mt-2 text-3xl">{event.capacity - event.attendeeCount}</p>
-        <p className="t-small text-muted">spots left</p>
-        <button className="mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-md bg-foreground px-5 text-sm font-bold text-background hover:bg-brand hover:text-brand-foreground" type="button">Log in to join</button>
-        <p className="t-micro mt-3 text-muted">You can read the details without an account.</p>
+        <JoinButton event={event} />
       </aside>
     </article>
   );
