@@ -3,14 +3,14 @@ import type { ButtonHTMLAttributes } from "react";
 
 import { cn } from "@/lib/utils";
 
-const buttonVariants = cva("button", {
+const buttonVariants = cva("inline-flex min-h-11 items-center justify-center rounded-md px-5 text-sm font-bold transition-colors", {
   variants: {
     variant: {
-      primary: "button-primary",
-      secondary: "button-secondary",
-      accent: "bg-accent text-accent-foreground hover:bg-accent-hover",
-      ghost: "text-foreground hover:bg-surface-2",
-      destructive: "bg-destructive text-white hover:brightness-110",
+      primary: "bg-foreground text-background hover:bg-brand hover:text-brand-foreground",
+      secondary: "border border-rule bg-surface text-foreground hover:bg-foreground hover:text-background",
+      accent: "bg-brand text-brand-foreground hover:bg-brand-hover",
+      ghost: "text-foreground hover:bg-surface",
+      destructive: "border border-danger text-danger hover:bg-danger-soft",
     },
     size: {
       sm: "min-h-9 px-3.5 text-xs",

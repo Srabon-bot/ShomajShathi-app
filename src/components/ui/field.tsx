@@ -3,7 +3,7 @@ import type { InputHTMLAttributes, SelectHTMLAttributes, TextareaHTMLAttributes 
 import { cn } from "@/lib/utils";
 
 const controlClass =
-  "w-full rounded-sm border bg-surface px-3.5 text-sm text-foreground placeholder:text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/25 disabled:cursor-not-allowed disabled:opacity-70";
+  "w-full border-0 border-b border-rule-soft bg-transparent px-0 py-3 text-sm text-foreground placeholder:text-subtle focus:border-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-70";
 
 export function Field({
   label,
@@ -22,11 +22,11 @@ export function Field({
 }) {
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium" htmlFor={htmlFor}>
-        {label} {required && <span className="text-accent" aria-hidden="true">*</span>}
+      <label className="t-label" htmlFor={htmlFor}>
+        {label} {required && <span className="text-brand" aria-hidden="true">*</span>}
       </label>
       {children}
-      <p className={cn("t-small", error ? "text-destructive" : "text-muted")}>
+      <p className={cn("t-small", error ? "text-danger" : "text-muted")}>
         {error ?? hint}
       </p>
     </div>

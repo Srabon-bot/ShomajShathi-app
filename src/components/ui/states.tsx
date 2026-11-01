@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 export function Skeleton({ className }: { className?: string }) {
-  return <div aria-hidden="true" className={cn("skeleton rounded-xs bg-surface-2", className)} />;
+  return <div aria-hidden="true" className={cn("skeleton", className)} />;
 }
 
 export function EmptyState({
@@ -14,7 +14,7 @@ export function EmptyState({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="rounded-md border border-dashed border-border-strong bg-surface/50 px-6 py-14 text-center">
+    <div className="border border-dashed border-rule-soft bg-surface px-6 py-14 text-center">
       <h2 className="t-h4">{title}</h2>
       <p className="t-small mx-auto mt-2 max-w-sm text-muted">{description}</p>
       {action && <div className="mt-5">{action}</div>}
