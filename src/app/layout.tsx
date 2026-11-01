@@ -1,25 +1,21 @@
 import type { Metadata } from "next";
-import { Fraunces, Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import { Archivo, Archivo_Black } from "next/font/google";
 
 import { Providers } from "@/components/providers";
 import { site } from "@/lib/site";
 
 import "./globals.css";
 
-const fraunces = Fraunces({
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-archivo",
   display: "swap",
 });
-const instrument = Instrument_Sans({
+const archivoBlack = Archivo_Black({
   subsets: ["latin"],
-  variable: "--font-instrument",
+  weight: "400",
   display: "swap",
-});
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  display: "swap",
+  variable: "--font-archivo-black",
 });
 
 export const metadata: Metadata = {
@@ -32,7 +28,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${fraunces.variable} ${instrument.variable} ${jetbrains.variable}`}
+      className={`${archivo.variable} ${archivoBlack.variable}`}
     >
       <body>
         <Providers>{children}</Providers>
