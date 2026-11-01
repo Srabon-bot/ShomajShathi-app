@@ -20,8 +20,10 @@ Copy-Item .env.example .env.local
 npm run dev
 ```
 
-Set `NEXT_PUBLIC_API_URL` to the deployed Render API URL before a Vercel build.
-The API must allow the exact Vercel origin through `CLIENT_ORIGIN`.
+Set `NEXT_PUBLIC_API_URL` to the deployed server Vercel URL before a Vercel
+build. The API must allow the exact Vercel origin through `CLIENT_ORIGIN`.
+For local CRUD verification, set the server's `ALLOW_ANON_WRITES=true` and
+optionally set `NEXT_PUBLIC_DEV_EMAIL` to the same test email.
 
 ## Deployment checklist
 

@@ -14,9 +14,10 @@ export class ApiError extends Error {
 export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${apiUrl}${path}`, {
     ...init,
-    headers: { Accept: "application/json", ...init?.headers },
+    headers: { Accept: "application/json", ...(init?.body ? { "Content-Type": "application/json" } : {}), ...init?.headers },
     signal: init?.signal ?? AbortSignal.timeout(10000),
   });
+  if (response.status === 204) return undefined as T;
   const body = (await response.json()) as { success: boolean; data?: T; message?: string };
   if (!response.ok || !body.success) throw new ApiError(body.message ?? "The request could not be completed.", response.status);
   return body.data as T;
@@ -25,7 +26,7 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> 
 export async function apiFetchEnvelope<T>(path: string, init?: RequestInit): Promise<{ data: T; meta?: ApiMeta }> {
   const response = await fetch(`${apiUrl}${path}`, {
     ...init,
-    headers: { Accept: "application/json", ...init?.headers },
+    headers: { Accept: "application/json", ...(init?.body ? { "Content-Type": "application/json" } : {}), ...init?.headers },
     signal: init?.signal ?? AbortSignal.timeout(10000),
   });
   const body = (await response.json()) as { success: boolean; data?: T; meta?: ApiMeta; message?: string };
