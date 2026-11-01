@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { MobileMenu } from "@/components/layout/mobile-menu";
+import { ProfileMenu } from "@/components/layout/profile-menu";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export function Navbar() {
@@ -25,18 +26,7 @@ export function Navbar() {
         </div>
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Link
-            className="hidden min-h-9 items-center bg-brand px-3 text-xs font-bold text-brand-foreground hover:bg-brand-hover sm:inline-flex"
-            href="/register"
-          >
-            Register
-          </Link>
-          <Link
-            className="inline-flex min-h-9 items-center border border-rule px-3 text-xs font-bold hover:bg-foreground hover:text-background"
-            href="/login"
-          >
-            Log in
-          </Link>
+          <ProfileMenu />
           <MobileMenu />
         </div>
       </div>
