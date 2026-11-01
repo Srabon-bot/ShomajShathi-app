@@ -1,6 +1,6 @@
 export const site = {
-  name: "Uddom",
-  wordmark: "uddom",
+  name: "Shomaj Shathi",
+  wordmark: "shomaj shathi",
   tagline: "Neighbourhood service, organised.",
   description:
     "Plan a cleanup, plant a hundred saplings, or collect winter clothes — then find the people who will show up with you.",

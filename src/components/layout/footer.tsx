@@ -4,10 +4,10 @@ import { site } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-surface">
+    <footer className="border-t border-rule bg-surface">
       <div className="shell grid gap-8 py-12 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <p className="font-display text-2xl">{site.wordmark}<span className="ml-1 inline-block size-1.5 rounded-full bg-accent" /></p>
+          <p className="font-display text-2xl"><span className="text-foreground">shomaj</span> <span className="text-brand">shathi</span></p>
           <p className="t-small mt-3 max-w-xs text-muted">{site.tagline}</p>
         </div>
         <div>
@@ -22,7 +22,7 @@ export function Footer() {
           <p className="t-small mt-4 text-muted">{site.location}</p>
         </div>
       </div>
-      <div className="border-t border-border">
+      <div className="border-t border-rule">
         <div className="shell py-5">
           <p className="t-small text-muted">© 2026 {site.name}</p>
         </div>
