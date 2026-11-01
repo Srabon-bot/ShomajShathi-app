@@ -35,12 +35,12 @@ export default function Home() {
             <div className="mt-8"><HomeEvents /></div>
           </div>
         </section>
-        <section className="py-16">
+        <section className="py-16" id="about">
           <div className="shell grid gap-8 md:grid-cols-3">
             {features.map(([title, description], index) => <article className="border-t border-rule pt-5" key={title}><p className="t-label">{String(index + 1).padStart(2, "0")}</p><h3 className="t-h3 mt-4">{title}</h3><p className="t-small mt-3 text-muted">{description}</p></article>)}
           </div>
         </section>
-        <section className="border-y border-rule py-16"><div className="shell grid gap-8 md:grid-cols-2"><div><p className="t-label text-brand-ink">Gallery</p><h2 className="t-h2 mt-4">Small actions, visible change.</h2></div><div className="grid grid-cols-2 gap-2">{["photo-1488521787991-ed7bbaae773c", "photo-1542601906990-b4d3fb778b09", "photo-1532996122724-e3c354a0b15b", "photo-1503676260728-1c00da094a0b"].map((photo) => <img className="aspect-square size-full object-cover" alt="" key={photo} src={`https://images.unsplash.com/${photo}`} />)}</div></div></section>
+        <section className="border-y border-rule py-16" id="gallery"><div className="shell grid gap-8 md:grid-cols-2"><div><p className="t-label text-brand-ink">Gallery</p><h2 className="t-h2 mt-4">Small actions, visible change.</h2></div><div className="grid grid-cols-2 gap-2">{["photo-1488521787991-ed7bbaae773c", "photo-1542601906990-b4d3fb778b09", "photo-1532996122724-e3c354a0b15b", "photo-1503676260728-1c00da094a0b"].map((photo) => <img className="aspect-square size-full object-cover" alt="" key={photo} src={`https://images.unsplash.com/${photo}`} />)}</div></div></section>
         <section className="py-12"><div className="shell flex flex-col gap-5 md:flex-row md:items-center md:justify-between"><div><p className="t-label">Stay close to the work</p><p className="t-lead mt-2">A design-only newsletter for future community updates.</p></div><Link className="inline-flex min-h-11 items-center justify-center rounded-md bg-foreground px-5 text-sm font-bold text-background" href="/events">Explore events</Link></div></section>
       </main>
       <Footer />

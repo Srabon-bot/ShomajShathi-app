@@ -1,5 +1,8 @@
 import Link from "next/link";
 
+import { MobileMenu } from "@/components/layout/mobile-menu";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+
 export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-rule bg-background/95">
@@ -8,13 +11,34 @@ export function Navbar() {
           <Link className="font-display text-[22px] lowercase tracking-tight" href="/">
             <span className="text-foreground">shomaj</span> <span className="text-brand">shathi</span>
           </Link>
-          <Link className="hidden text-sm text-muted hover:text-foreground md:block" href="/events">
-            Upcoming events
-          </Link>
+          <nav className="hidden items-center gap-6 md:flex" aria-label="Main">
+            <Link className="text-sm text-muted hover:text-foreground" href="/events">
+              Upcoming events
+            </Link>
+            <Link className="text-sm text-muted hover:text-foreground" href="/#gallery">
+              Gallery
+            </Link>
+            <Link className="text-sm text-muted hover:text-foreground" href="/#about">
+              About
+            </Link>
+          </nav>
         </div>
-        <Link className="inline-flex min-h-9 items-center border border-rule px-3 text-xs font-bold hover:bg-foreground hover:text-background" href="/login">
-          Log in
-        </Link>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Link
+            className="hidden min-h-9 items-center bg-brand px-3 text-xs font-bold text-brand-foreground hover:bg-brand-hover sm:inline-flex"
+            href="/register"
+          >
+            Register
+          </Link>
+          <Link
+            className="inline-flex min-h-9 items-center border border-rule px-3 text-xs font-bold hover:bg-foreground hover:text-background"
+            href="/login"
+          >
+            Log in
+          </Link>
+          <MobileMenu />
+        </div>
       </div>
     </header>
   );
