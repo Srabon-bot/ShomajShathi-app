@@ -57,7 +57,7 @@ export function MobileMenu() {
         {open ? <X size={18} /> : <Menu size={18} />}
       </button>
       {open && (
-        <div id="mobile-menu" className="absolute inset-x-0 top-full border-b border-rule bg-background">
+        <div id="mobile-menu" className="absolute inset-x-0 top-full border-b border-rule bg-surface">
           <nav className="shell py-2" aria-label="Mobile">
             {[...links, ...(user ? memberLinks : [])].map((link) => (
               <Link
