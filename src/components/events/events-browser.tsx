@@ -12,12 +12,26 @@ import { apiFetchEnvelope, ApiError, type ApiMeta } from "@/lib/api";
 export function EventsBrowser() {
   const [events, setEvents] = useState<EventItem[]>([]);
   const [type, setType] = useState<EventType | "">("");
+  // inputQuery drives the visible text field immediately.
+  // query is the debounced value that triggers the API call.
+  const [inputQuery, setInputQuery] = useState("");
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [reloadKey, setReloadKey] = useState(0);
   const [meta, setMeta] = useState<ApiMeta>({ page: 1, limit: 12, total: 0, totalPages: 1 });
   const [page, setPage] = useState(1);
+
+  // Debounce: only update the query that hits the API 350ms after the user stops typing.
+  useEffect(() => {
+    setLoading(true);
+    setError("");
+    const timer = setTimeout(() => {
+      setQuery(inputQuery);
+      setPage(1);
+    }, 350);
+    return () => clearTimeout(timer);
+  }, [inputQuery]);
 
   function startRequest() {
     setLoading(true);
@@ -47,10 +61,10 @@ export function EventsBrowser() {
     return () => { active = false; };
   }, [page, query, type, reloadKey]);
 
-  const hasFilters = Boolean(query || type);
+  const hasFilters = Boolean(inputQuery || type);
 
   function clearFilters() {
-    startRequest();
+    setInputQuery("");
     setQuery("");
     setType("");
     setPage(1);
@@ -64,8 +78,8 @@ export function EventsBrowser() {
             aria-label="Search events"
             className="h-11 w-full sm:max-w-sm border-b border-band-foreground/40 bg-transparent px-0 text-sm placeholder:text-band-foreground/60"
             placeholder="Search events"
-            value={query}
-            onChange={(event) => { startRequest(); setQuery(event.target.value); setPage(1); }}
+            value={inputQuery}
+            onChange={(event) => { setInputQuery(event.target.value); }}
           />
           <select
             aria-label="Filter by event type"

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -101,8 +102,17 @@ function EventContent({ event }: { event: EventItem }) {
       <div className="shell section">
         <article className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
           <div>
-            <div className="aspect-[3/2] overflow-hidden border border-rule bg-surface">
-              <img src={event.image} alt="" className="size-full object-cover" />
+            <div className="relative aspect-[3/2] overflow-hidden border border-rule bg-surface">
+              {/* unoptimized because event images come from arbitrary user-submitted URLs */}
+              <Image
+                src={event.image}
+                alt=""
+                fill
+                sizes="(max-width: 1024px) 100vw, calc(100vw - 24rem)"
+                className="object-cover"
+                priority
+                unoptimized
+              />
             </div>
             <p className="t-body mt-8 max-w-2xl">{event.description}</p>
           </div>

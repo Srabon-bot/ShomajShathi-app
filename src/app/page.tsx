@@ -6,6 +6,12 @@ import { ImpactBand } from "@/components/home/impact-band";
 import { GalleryCarousel } from "@/components/home/moments-carousel";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
+import { apiFetch, apiFetchEnvelope } from "@/lib/api";
+import type { EventItem } from "@/lib/events";
+import type { EventStats } from "@/lib/events-api";
+
+// Opt out of static prerendering — this page fetches live event data on every request.
+export const instant = false;
 
 const features = [
   ["Create it", "Turn a good idea into a clear event that neighbours can find."],
@@ -13,7 +19,23 @@ const features = [
   ["Keep the record", "See what you have joined and the places you have helped."],
 ] as const;
 
-export default function Home() {
+// Fetch all public home-page data in parallel on the server.
+// instant=false (above) tells Next.js 16 to SSR this page on every request —
+// no static prerendering attempt, so the live API data is always fresh.
+async function getHomeData() {
+  const [eventsResult, statsResult] = await Promise.allSettled([
+    apiFetchEnvelope<EventItem[]>("/api/events?limit=6"),
+    apiFetch<EventStats>("/api/events/stats"),
+  ]);
+  return {
+    events: eventsResult.status === "fulfilled" ? eventsResult.value.data : [],
+    stats: statsResult.status === "fulfilled" ? statsResult.value : null,
+  };
+}
+
+export default async function Home() {
+  const { events, stats } = await getHomeData();
+
   return (
     <>
       <Navbar />
@@ -45,7 +67,7 @@ export default function Home() {
                 See the archive →
               </Link>
             </div>
-            <div className="mt-8"><HomeEvents /></div>
+            <div className="mt-8"><HomeEvents events={events} /></div>
           </div>
         </section>
 
@@ -62,10 +84,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Impact stats */}
-        <ImpactBand />
+        {/* Impact stats — data already resolved server-side */}
+        <ImpactBand stats={stats} />
 
-        {/* Gallery carousel */}
+        {/* Gallery carousel — fetches its own past events client-side (needs interactivity) */}
         <section className="border-b border-rule bg-[#F3F0E7] py-14 dark:bg-[#1C1D16]" id="gallery">
           <div className="shell">
             <div className="mb-6">

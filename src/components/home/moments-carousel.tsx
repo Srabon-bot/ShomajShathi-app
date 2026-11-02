@@ -1,6 +1,7 @@
 "use client";
 
 import Autoplay from "embla-carousel-autoplay";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -16,12 +17,14 @@ import { apiFetchEnvelope } from "@/lib/api";
 import type { EventItem } from "@/lib/events";
 import { formatDateParts } from "@/lib/events";
 
+const BASE = "https://shomajshathi-app.vercel.app/images";
+
 /** Static fallback images shown when the API has no past events. */
 const FALLBACK = [
-  { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c", caption: "Blankets collected and sorted for families.", detail: null, href: null },
-  { src: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09", caption: "Saplings planted along the embankment.", detail: null, href: null },
-  { src: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b", caption: "A riverbank restored by volunteers.", detail: null, href: null },
-  { src: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b", caption: "Books opened, letters learned.", detail: null, href: null },
+  { src: `${BASE}/${encodeURIComponent("Blankets for Mohammadpur Basti (past).jpg")}`, caption: "Blankets collected and sorted for families.", detail: null, href: null },
+  { src: `${BASE}/${encodeURIComponent("Hatirjheel Tree Plantation upcoming.jpg")}`, caption: "Saplings planted along the embankment.", detail: null, href: null },
+  { src: `${BASE}/${encodeURIComponent("Buriganga Bank Cleanup (past).jpg")}`, caption: "A riverbank restored by volunteers.", detail: null, href: null },
+  { src: `${BASE}/${encodeURIComponent("street children in bangladesh education circle.jpg")}`, caption: "Books opened, letters learned.", detail: null, href: null },
 ];
 
 type Slide = { src: string; caption: string; detail: string | null; href: string | null };
@@ -131,12 +134,15 @@ export function GalleryCarousel() {
           {slides.map((slide, i) => (
             <CarouselItem key={i} className="pl-0">
               <div className="relative aspect-[4/3] overflow-hidden">
-                <img
+                {/* Slides may be user-submitted event images (any domain) or
+                    Unsplash fallbacks. Use unoptimized to allow both. */}
+                <Image
                   src={slide.src}
                   alt=""
-                  loading="lazy"
-                  decoding="async"
-                  className="size-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                  unoptimized
                 />
               </div>
             </CarouselItem>

@@ -1,4 +1,4 @@
-# PRD — Uddom
+# PRD — Shomaj Shathi
 
 **Product:** Social Development Events Platform
 **Course:** B14 — Assignment 8 (Hermione)
@@ -8,7 +8,7 @@
 
 | Field | Value |
 | --- | --- |
-| Version | 2.1 — build from scratch, human-made commits |
+| Version | 2.4 — aligned with the current poster interface specification |
 | Status | Ready to execute |
 | Implementer | AI coding agent |
 | Requirements source | `B14-A8_category-Hermione.docx` + assignment post |
@@ -20,14 +20,15 @@
 This pair of documents is self-contained. To start a brand-new build:
 
 1. Create an empty folder, e.g. `D:\projects\uddom`. This is the **workspace
-   root** for the whole build.
+   root** for the whole build. The folder name is historical; the product is
+   **Shomaj Shathi**.
 2. Put `DESIGN.md` and `PRD.md` at that root — side by side, not inside a repo.
 3. Create the two repositories as siblings:
 
 ```
 D:\projects\uddom\
-  client\        ← git repo #1  (Next.js)
-  server\        ← git repo #2  (Express)
+  client\        ← git repo #1  (Next.js)   → remote shomaj-shathi-client
+  server\        ← git repo #2  (Express)   → remote shomaj-shathi-server
   DESIGN.md  PRD.md
 ```
 
@@ -70,8 +71,8 @@ Events get lost, nobody knows who is coming, and there is no record of what was
 actually done.
 
 **Goal:** one place to create a service event, find it, join it, and see what you
-have taken part in — with a design that feels local and hand-made rather than
-like a template.
+have taken part in — with a design that looks printed and civic rather than
+template-generated.
 
 **Non-goals:** payments, donations processing, chat, notifications, file upload,
 moderation, admin roles.
@@ -92,8 +93,8 @@ Every row must be demonstrable on the **live site**, not just localhost.
 | G6 | Deployed: Vercel + Render + Atlas | live | open URL |
 | G7 | No error on reload of any route | both | reload each route |
 | G8 | Signed-in user not redirected on private-route reload | client | reload `/events/manage` |
-| G9 | Navbar: logo, Upcoming Events, conditional Login/Logout | client | manual |
-| G10 | Profile dropdown: Create / Manage / Joined | client | hover + click |
+| G9 | Navbar: two-tone wordmark, Upcoming Events, Gallery, About, theme toggle, and conditional Register/profile menu | client | manual |
+| G10 | Profile dropdown: Create / Manage / Joined / Profile / Sign out | client | hover + click |
 | G11 | Display name on hover over avatar | client | hover |
 | G12 | Footer with real information | client | manual |
 | G13 | Email + password login | both | manual |
@@ -101,24 +102,25 @@ Every row must be demonstrable on the **live site**, not just localhost.
 | G15 | Register: name, email, photoURL, password | client | manual |
 | G16 | Password: uppercase + lowercase + ≥6, with error | client | type `abc` |
 | G17 | No email verification / forgot password | — | absence |
-| G18 | Home: banner, features, 6 events via `.limit(6)`, gallery, newsletter | both | query log |
-| G19 | Create: title, description, type, thumbnail URL, location, date | client | manual |
+| G18 | Home: hero, single yellow categories band with filters and 6 events via `.limit(6)`, how it works, gallery, newsletter | both | query log |
+| G19 | Create: title, type, date, time, location, capacity, description, what to bring, thumbnail URL, and free/open confirmation | client | manual |
 | G20 | Past dates rejected | both | pick yesterday |
 | G21 | Creator email stored with the event | Atlas | document |
 | G22 | Success toast + redirect to Upcoming | client | manual |
 | G23 | Upcoming shows only future events | server | query check |
-| G24 | Card: image, title, location, type, date, View | client | manual |
-| G25 | Detail public; Join requires login | client | incognito |
+| G24 | Card: 4:3 image, title, location, type dot, date/time, capacity chip, Details action | client | manual |
+| G25 | Detail public; join panel requires login and exposes available, joined, full, and past states | client | incognito |
 | G26 | Join stores event + user | Atlas | document |
 | G27 | Joined page sorted by event date | both | manual |
 | G28 | Manage: update + delete own events only | both | two accounts |
 | G29 | Validation on create, update, all auth forms | both | manual |
-| G30 | Theme toggle changes the whole system | client | click |
+| G30 | Theme toggle changes the whole system, including the dashboard and feedback UI | client | click |
 | G31 | JWT validation protects APIs | server | curl no token → 401 |
 | G32 | Two optional tasks | — | skeletons + profile update |
 | G33 | Responsive 390 / 768 / 1280 | client | manual |
 | G34 | Consistent headings, buttons, equal-height cards | client | `/styleguide` |
 | G35 | New X logo, not the Twitter bird | client | footer |
+| G36 | One orange accent, one yellow categories band, flat colour, no shadows, square surfaces, underline forms | client | `/styleguide` |
 
 ---
 
@@ -149,6 +151,10 @@ Every row must be demonstrable on the **live site**, not just localhost.
 **In:** Home · Upcoming · Event detail · Login · Register · Create · Manage ·
 Edit · Joined · Profile · 404 · `/styleguide`. Auth (email + Google), event CRUD,
 join/leave, JWT-protected API, ownership, theme, skeletons, empty states, deploy.
+The home composition includes the hero, category filters and event cards, how-it-
+works steps, gallery contact sheet, and design-only newsletter. Signed-in pages
+share the sand-sidebar dashboard shell; public pages share the ruled navbar and
+footer.
 
 **Out:** email verification, password reset, payments, chat, notifications, file
 upload, newsletter persistence, comments, ratings, admin roles.
@@ -169,7 +175,7 @@ Defaults so the agent is never blocked. Change a row deliberately, not silently.
 | D6 | ODM | Mongoose |
 | D7 | Validation | Zod on client and server; `react-hook-form` on forms |
 | D8 | HTTP | native `fetch` wrapped in `lib/api.ts`; no Axios, no TanStack Query |
-| D9 | UI | Tailwind 4 + tokens from `DESIGN.md`; no HeroUI/DaisyUI/shadcn install |
+| D9 | UI | Tailwind 4 + **shadcn/ui** primitives (Radix) restyled to `DESIGN.md` tokens; no HeroUI/DaisyUI/MUI |
 | D10 | Deploy | Vercel + Render + Atlas M0 |
 | D11 | Package manager | npm |
 | D12 | Time | store UTC, display `Asia/Dhaka`, format via `formatDateParts` |
@@ -209,6 +215,8 @@ client/
     styleguide/page.tsx
     layout.tsx  globals.css  not-found.tsx
   src/components/{ui,layout,events,home,auth}
+    layout/dashboard-shell.tsx        sand sidebar for signed-in pages
+    layout/wordmark.tsx               shomaj + shathi, two-tone
   src/lib/{api,auth,auth-client,events,site,utils,validation}
   public/images/events/
   DESIGN.md  PRD.md  README.md  CREDITS.md
@@ -292,6 +300,8 @@ BetterAuth owns `user`, `session`, `account`, `verification`, `jwks`.
 | `location` | string | 3–120 |
 | `date` | Date | must be future on create and update |
 | `capacity` | number | 1–1000, default 50 |
+| `whatToBring` | string[] | 3–5 concrete items shown on the detail page |
+| `isFree` | boolean | required confirmation that the event is free and open to anyone |
 | `attendeeCount` | number | default 0, never negative |
 | `organizerId` | string | BetterAuth user id, from JWT |
 | `organizerEmail` | string | from JWT — satisfies G21 |
@@ -350,6 +360,8 @@ Envelope:
   "location": "Buriganga ghat, Old Dhaka",
   "date": "2026-11-21T01:00:00.000Z",
   "capacity": 80,
+  "whatToBring": ["Closed shoes", "Water bottle", "Sun protection"],
+  "isFree": true,
   "attendeeCount": 61,
   "organizer": { "id": "usr_…", "name": "Nusrat Jahan", "email": "n@…", "image": null },
   "joined": false,
@@ -412,29 +424,29 @@ them in `CREDITS.md`.
 
 | ID | Requirement | Acceptance |
 | --- | --- | --- |
-| FR-A1 | Register: name, email, photoURL, password, confirm | User row in Atlas; toast; redirect `/events` |
+| FR-A1 | Register: full name, email, photo URL, password, confirm, and community-guidelines checkbox | User row in Atlas; toast; redirect `/events` |
 | FR-A2 | Password upper + lower + ≥6 | `abc` → inline error + toast; `Abc123` accepted |
-| FR-A3 | Login | Wrong password → `InlineAlert`, no redirect |
+| FR-A3 | Login: email, password, and optional keep-signed-in checkbox | Wrong password → `InlineAlert`, no redirect |
 | FR-A4 | Google login | OAuth completes; `account.providerId = google` |
 | FR-A5 | Logout | Cookie cleared; navbar shows **Log in**; private route redirects |
 | FR-A6 | Session survives reload | F5 on `/events/manage` stays |
 | FR-A7 | Private routes redirect only when signed out | incognito → `/login?next=…` once |
 | FR-A8 | No verification, no reset | links absent |
-| FR-A9 | Profile view + update | name/photo persist; navbar updates |
+| FR-A9 | Profile view + update | definition-list form persists name/photo; read-only email remains unchanged; navbar updates |
 | FR-A10 | No `alert()` | grep + manual |
 
 ### 7.2 Events — `FR-E*`
 
 | ID | Requirement | Acceptance |
 | --- | --- | --- |
-| FR-E1 | Home shows 6 upcoming | server uses `.limit(6)`; length ≤6 |
+| FR-E1 | Home categories band shows 6 upcoming events | server uses `.limit(6)`; cards render inside the yellow band; length ≤6 |
 | FR-E2 | Upcoming excludes past | seed a past event in Atlas → absent |
-| FR-E3 | Card fields + View | opens `/events/[id]` |
-| FR-E4 | Detail public | incognito readable; join shows **Log in to join** |
+| FR-E3 | Card fields + Details action | 4:3 image, type dot, count chip, title, location, date/time; opens `/events/[id]` |
+| FR-E4 | Detail public | incognito readable; two-column facts/image layout; join shows **LOG IN TO JOIN** |
 | FR-E5 | Create requires login | signed-out POST → 401 |
 | FR-E6 | Create validates future date | yesterday → inline error |
 | FR-E7 | Stores creator id/email/name | Atlas document |
-| FR-E8 | Toast + redirect | toast names the event |
+| FR-E8 | Toast + redirect | toast names the event and redirects to Upcoming |
 | FR-E9 | Manage shows own only | second account sees empty state |
 | FR-E10 | Update own; others 403 | curl with second token |
 | FR-E11 | Delete own behind dialog | cancel keeps; confirm removes + joins |
@@ -443,21 +455,21 @@ them in `CREDITS.md`.
 | FR-E14 | Full event cannot be joined | button disabled, **Event full** |
 | FR-E15 | Joined sorted by date | ascending |
 | FR-E16 | Leave decrements | count restored |
-| FR-E17 | Detail shows organiser + joined state | **You're going** when joined |
+| FR-E17 | Detail shows organiser, what-to-bring list, capacity meter, and joined state | **YOU'RE GOING**, **LEAVE EVENT**, **ADD TO CALENDAR**, and **SHARE** states match the design |
 
 ### 7.3 Interface — `FR-U*`
 
 | ID | Requirement | Acceptance |
 | --- | --- | --- |
-| FR-U1 | Navbar both auth states | logo, Upcoming, toggle, Log in or avatar |
-| FR-U2 | Avatar hover name; click menu | four links + sign out |
-| FR-U3 | Footer real content, X logo | no bird icon |
+| FR-U1 | Navbar both auth states | two-tone wordmark, Upcoming Events, Gallery, About, theme toggle, Register or profile trigger |
+| FR-U2 | Avatar hover name; click menu | Create event, Manage events, Joined events, Profile, separator, Sign out |
+| FR-U3 | Footer real content, X logo | Explore, Community, Contact columns, two-tone display wordmark, no bird icon |
 | FR-U4 | Theme toggle global | every route in both themes |
 | FR-U5 | Responsive | no horizontal scroll at 390 |
 | FR-U6 | Skeletons | card-shaped placeholders |
 | FR-U7 | Empty states | copy explains next action |
 | FR-U8 | Consistent headings/buttons/cards | matches `/styleguide` |
-| FR-U9 | Home five sections in order | banner, features, events, gallery, newsletter |
+| FR-U9 | Home composition in order | hero, yellow categories band containing filters and six cards, how it works, gallery, newsletter, footer |
 | FR-U10 | Newsletter design-only | toast, nothing stored |
 
 ### 7.4 Security — `FR-S*`
@@ -483,7 +495,8 @@ them in `CREDITS.md`.
 | --- | --- |
 | Performance | Home LCP < 2.5s on 4G; fixed aspect ratios; no layout shift; images sized |
 | Accessibility | AA contrast, visible focus, 44px targets, `aria-label` on icon buttons, keyboard menu + dialog |
-| SEO | `%s · Uddom` title template; per-page description; OG image on Home + detail |
+| SEO | `%s · Shomaj Shathi` title template; per-page description; OG image on Home + detail |
+| Design integrity | One accent, no shadows, square surfaces, no eyebrows, black-on-orange text only — audited on `/styleguide` in both themes |
 | Reliability | Reload-safe on every route; no unhandled rejections; server fails loudly if DB is unreachable |
 | Maintainability | one envelope, one `toEventDTO`, one API client, no duplicated fetch logic |
 | Observability | server logs method, path, status, duration |
@@ -512,7 +525,7 @@ cutting join, ownership, or deployment. Those three are graded; polish is not.
 #### P0.1 Repositories and scaffold
 
 - [ ] `client/` and `server/` created as siblings; `git init` in each; remotes
-      `uddom-client` / `uddom-server`.
+      `shomaj-shathi-client` / `shomaj-shathi-server`.
 - [ ] Copy `DESIGN.md`, `PRD.md` into `client/`. Stage only — the human commits
       it as C02 `docs: add design and product specifications`.
 - [ ] Scaffold the client, from the workspace root:
@@ -524,8 +537,9 @@ cutting join, ownership, or deployment. Those three are graded; polish is not.
 
       `create-next-app` installs Next 16, React 19 and Tailwind 4 and runs
       `git init`. Accept the Turbopack and App Router prompts.
-- [ ] Install the interface dependencies from `DESIGN.md` Appendix C, plus
-      `better-auth`.
+- [ ] Install the interface dependencies from `DESIGN.md` Appendix C —
+      including `npx shadcn@latest init` and the listed `shadcn add` primitives —
+      plus `better-auth`.
 - [ ] `server/`: `npm init -y`; install `express cors helmet mongoose zod jose
       dotenv express-rate-limit`; dev `typescript tsx @types/express @types/cors
       @types/node`.
@@ -537,35 +551,45 @@ cutting join, ownership, or deployment. Those three are graded; polish is not.
 
 #### P0.2 Token layer and fonts
 
-- [ ] Paste `DESIGN.md` Appendix A into `src/app/globals.css`.
+- [ ] Run `npx shadcn@latest init` (style `new-york`, base colour `neutral`,
+      CSS variables, RSC) and add only the primitives listed in `DESIGN.md`
+      Appendix C.
+- [ ] Paste `DESIGN.md` Appendix A into `src/app/globals.css`, **replacing** the
+      token block shadcn appends (its oklch values and `--radius` ramp must not
+      survive).
 - [ ] Wire `next/font` on `<html>` (Appendix C).
-- [ ] `src/lib/utils.ts` with `cn()`.
+- [ ] `src/lib/utils.ts` with `cn()` (shadcn generates the same helper — keep
+      one file, not two).
 - [ ] `src/lib/site.ts` with brand + nav.
 - [ ] Root layout wraps children in `Providers` (`next-themes` + Sonner).
 
-**Exit:** a blank page renders in paper/forest with Fraunces headings; toggle
-switches to the dark material.
+**Exit:** a blank page renders white with Archivo Black headings, a black rule
+under the header, and the toggle switches to the black ground without a flash.
 
 #### P0.3 Design system components
 
-Build in `DESIGN.md` §7 order, up to and including `EventCard`:
+Build in `DESIGN.md` §7 order, up to and including `EventCard`. Every primitive
+first arrives via `npx shadcn@latest add`, then loses its shadcn styling
+(radius, shadow, neutral palette) per §7 — none ships as generated:
 
-- [ ] `Button` (6 variants, 4 sizes, loading)
-- [ ] `Field` + `Input` / `Textarea` / `Select` / `Checkbox`
-- [ ] `Badge` + `TypeBadge`
-- [ ] `SectionHeading` + `Stat`
+- [ ] `Button` (5 variants, 4 sizes, loading — no orange variant)
+- [ ] `Field` + `Input` / `Textarea` / `Select` / `Checkbox` (underline style)
+- [ ] `Chip`, `TypeDot`, `CountChip`
+- [ ] `SectionHeading` + `Stat` (no eyebrow prop)
 - [ ] `Skeleton` + `EmptyState`
 - [ ] `ThemeToggle`
 - [ ] `EventCard` + `EventRow`
 
-**Exit:** every component compiles and renders on a scratch page; `tsc --noEmit`
-clean. P0.4 then gives them a permanent home at `/styleguide`.
+**Exit:** every component compiles and renders on a scratch page; no `shadow-*`
+or `rounded-lg` survives from a generated file; `tsc --noEmit` clean. P0.4 then
+gives them a permanent home at `/styleguide`.
 
 #### P0.4 `/styleguide`
 
-- [ ] Nine sections: Colour, Typography, Space & shape, Buttons, Forms, Chips,
-      Event card, Feedback, Composition.
-- [ ] Side-by-side `.theme-light` / `.theme-dark` islands for colour and type.
+- [ ] Ten sections: Colour, Typography, Rules & shape, Buttons, Forms, Chips &
+      metadata, Event card, Dashboard shell, Feedback, Composition.
+- [ ] Side-by-side `.theme-light` / `.theme-dark` islands for colour and type,
+      each pair labelled with its measured contrast ratio.
 - [ ] Sticky top bar, contents rail on desktop.
 
 **Exit:** the page is usable as a visual spec, in both themes, at 390 and 1280.
@@ -602,7 +626,8 @@ clean. P0.4 then gives them a permanent home at `/styleguide`.
       10s timeout via `AbortSignal.timeout`.
 - [ ] `lib/events.ts` — `EventItem`, `eventTypes`, `formatDateParts`.
 - [ ] `Avatar` (initials fallback; needed by the navbar in P2.3).
-- [ ] `Navbar` signed-out, `Footer`, page-header pattern.
+- [ ] `Wordmark`, `Navbar` (divided cells, orange register cell), `Footer`
+      (giant two-tone wordmark), page-header pattern.
 - [ ] 404 page.
 - [ ] New components added to `/styleguide`.
 
@@ -610,11 +635,13 @@ clean. P0.4 then gives them a permanent home at `/styleguide`.
 
 #### P1.3 Home
 
-- [ ] Banner per `DESIGN.md` §8.1, real copy, two buttons.
-- [ ] Features: three cards.
+- [ ] Hero per `DESIGN.md` §8.1 — `t-mega` caps, rule, tagline, two buttons.
+      No photograph.
+- [ ] Yellow categories band: filter chips + the six event cards on `bg-sun`.
+- [ ] Features: three columns divided by rules, numbered 01 / 02 / 03.
 - [ ] Upcoming: server component with `limit=6`; `loading.tsx` skeletons.
-- [ ] Gallery: `GalleryGrid`, five photos.
-- [ ] Newsletter: design-only.
+- [ ] Gallery: `GalleryGrid`, five square photos.
+- [ ] Newsletter: design-only, on a ruled band.
 - [ ] `metadata` + OG image.
 
 **Exit:** matches `/styleguide` in both themes at 390 / 768 / 1280.
@@ -622,7 +649,8 @@ clean. P0.4 then gives them a permanent home at `/styleguide`.
 #### P1.4 Upcoming and detail
 
 - [ ] `/events` — grid, type filter, search, pagination, loading, empty.
-- [ ] `/events/[id]` — banner, meta, description, what-to-bring, organiser.
+- [ ] `/events/[id]` — title, facts list, image right, description,
+      what-to-bring, organiser.
 - [ ] Join button disabled, reads **Log in to join** (auth arrives in Part 2).
 - [ ] `generateMetadata`; `notFound()` for bad ids.
 
@@ -681,7 +709,8 @@ checkpoint of Day 1.**
 
 #### P2.2 Register and login
 
-- [ ] `(auth)` route group + split layout `DESIGN.md` §8.4.
+- [ ] `(auth)` route group; single-column form per `DESIGN.md` §8.4, no split
+      photo panel.
 - [ ] `lib/validation.ts` shared zod schema.
 - [ ] `SocialButton` + **or** divider.
 - [ ] Toast on success; `InlineAlert` on failure.
@@ -705,7 +734,8 @@ checkpoint of Day 1.**
 
 - [ ] `(protected)/layout.tsx` calls `getSession`; `redirect("/login?next=…")`.
 - [ ] Move create/edit/manage/joined/profile into the group.
-- [ ] No client-side redirect flicker.
+- [ ] Wrap the signed-in pages in `DashboardShell` (sand sidebar, pill nav,
+      logout pinned); no client-side redirect flicker.
 - [ ] `loading.tsx` skeletons per route.
 
 **Exit:** G8 passes; incognito redirects once.
@@ -814,7 +844,7 @@ Checks
 - npm run typecheck
 - /styleguide renders Button + fields in both themes
 
-Next: C05 — badges, section heading and states
+Next: C05 - chips, section heading and states
 Reply **continue** when this commit is in.
 ```
 
@@ -847,15 +877,15 @@ comfortably above the line even if a few rows merge.
 | C02 | `docs: add design and product specifications` | P0.1 |
 | C03 | `feat(design): tokens, type roles and fonts` | P0.2 |
 | C04 | `feat(ui): button and form controls` | P0.3 |
-| C05 | `feat(ui): badges, section heading and states` | P0.3 |
+| C05 | `feat(ui): chips, section heading and states` | P0.3 |
 | C06 | `feat(ui): theme toggle and toast provider` | P0.3 |
 | C07 | `feat(events): event card and compact row` | P0.3 |
 | C08 | `feat(styleguide): document the design system` | P0.4 |
 | C09 | `feat(layout): navbar, footer and page header` | P1.2 |
 | C10 | `feat(api): typed fetch client and event types` | P1.2 |
-| C11 | `feat(home): banner and stat strip` | P1.3 |
+| C11 | `feat(home): poster hero and stat strip` | P1.3 |
 | C12 | `feat(home): features, gallery and newsletter` | P1.3 |
-| C13 | `feat(home): upcoming events from the api` | P1.3 |
+| C13 | `feat(home): categories band with live events` | P1.3 |
 | C14 | `feat(events): upcoming grid with filters` | P1.4 |
 | C15 | `feat(events): detail page and join panel` | P1.4 |
 | C16 | `feat(events): create form with validation` | P1.7 |
@@ -968,8 +998,8 @@ curl -i -H "Origin: https://evil.example" $API/api/events | grep -i access-contr
 
 **Order: Atlas → server → client → OAuth → verify.**
 
-1. **Atlas** — M0, database `uddom`, user with `readWrite`, network `0.0.0.0/0`.
-   Copy the SRV string, append `/uddom`.
+1. **Atlas** — M0, database `shomajshathi`, user with `readWrite`, network
+   `0.0.0.0/0`. Copy the SRV string, append `/shomajshathi`.
 2. **Render** — New Web Service → server repo → build `npm ci && npm run build`
    → start `npm start` → health `/api/health`. Add every env from §6.3 with
    production values. Deploy, seed once.
@@ -1026,7 +1056,8 @@ redeploy both services.
 | Atlas connection string | P0.5 | You |
 | Vercel + Render projects | P1.5 | You |
 | Approve extra packages (§5) | P0.1 | You (silence = approved) |
-| Final wordmark | P1.2 | You |
+| Final wordmark | — | **Resolved:** `shomaj` + `shathi`, two-tone |
+| Heading font | P0.2 | **Resolved:** Archivo Black + Archivo |
 
 ---
 
@@ -1034,6 +1065,12 @@ redeploy both services.
 
 | Date | Change |
 | --- | --- |
+| 1 Nov 2026 | v2.4 — synchronized product requirements with the revised poster interface: navigation, home composition, event metadata, detail states, dashboard shell, forms, and visual acceptance criteria. |
+| 1 Nov 2026 | v2.3 — **shadcn/ui adopted** as the primitive base (Radix behaviour, restyled to the poster system); install list, `components.json`, P0.2/P0.3 updated; second component libraries forbidden. |
+| 1 Nov 2026 | v2.2 — brand renamed **Shomaj Shathi**; interface replaced with the poster system: white/black rules, Archivo Black caps, one orange (black text only), yellow categories band, sand dashboard sidebar, underline fields, no shadows. `DESIGN.md` rewritten end to end. |
 | 31 Oct 2026 | `DESIGN.md` narrowed to the interface: routes, data, API and seed content live only here. Its §8 is now page compositions, not screens. |
 | 31 Oct 2026 | v2.1 — commits are human-made: stop after every commit row, hand over the message, wait for `continue`. |
 | 31 Oct 2026 | v2.0 — self-contained build-from-scratch PRD; P0 foundation; 29/16 commit plan. |
+
+
+

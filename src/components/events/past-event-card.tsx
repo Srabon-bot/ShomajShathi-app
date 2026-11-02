@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { CountChip, TypeDot } from "@/components/ui/metadata";
@@ -9,7 +10,15 @@ export function PastEventCard({ event }: { event: EventItem }) {
   return (
     <article className="flex h-full flex-col overflow-hidden border border-rule bg-surface">
       <div className="relative aspect-[4/3] overflow-hidden bg-surface">
-        <img src={event.image} alt="" loading="lazy" decoding="async" className="size-full object-cover" />
+        {/* unoptimized because event images come from arbitrary user-submitted URLs */}
+        <Image
+          src={event.image}
+          alt=""
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          className="object-cover"
+          unoptimized
+        />
         <div className="absolute left-3 top-3 border border-rule bg-background/95 px-2 py-1 text-center dark:bg-sun dark:text-background">
           <p className="t-figure text-lg leading-none">{date.day}</p>
           <p className="t-label mt-1 text-[9px] text-muted dark:text-background/70">{date.month}</p>

@@ -1,8 +1,4 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
-import { getEventStats, type EventStats } from "@/lib/events-api";
+import type { EventStats } from "@/lib/events-api";
 
 function daysUntil(iso: string | null): number | null {
   if (!iso) return null;
@@ -33,22 +29,13 @@ const PLACEHOLDER: Stat[] = [
   { value: "—", label: "days to the next one" },
 ];
 
-export function ImpactBand() {
-  const [stats, setStats] = useState<Stat[]>(PLACEHOLDER);
-
-  useEffect(() => {
-    let active = true;
-    getEventStats()
-      .then((data) => {
-        if (active) setStats(buildStats(data));
-      })
-      .catch(() => {
-        // Keep the placeholder values; the band still renders.
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
+/**
+ * Renders impact statistics on the home page.
+ * Data is fetched server-side in the parent page and passed as a prop —
+ * no client-side waterfall.
+ */
+export function ImpactBand({ stats: data }: { stats: EventStats | null }) {
+  const stats = data ? buildStats(data) : PLACEHOLDER;
 
   return (
     <section className="border-y border-rule bg-hero py-14 text-hero-foreground" aria-label="Impact statistics">
