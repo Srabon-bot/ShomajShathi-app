@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
 import type { EventItem } from "@/lib/events";
+import { isPast } from "@/lib/events";
 import { getJoinState, joinEvent, leaveEvent, type JoinState } from "@/lib/joins-api";
 
 export function JoinButton({ event }: { event: EventItem }) {
@@ -50,6 +51,18 @@ export function JoinButton({ event }: { event: EventItem }) {
     } finally {
       setPending(false);
     }
+  }
+
+  // Past events: show attendance record; joining/leaving is blocked server-side.
+  if (isPast(event)) {
+    return (
+      <>
+        <p className="t-label text-muted">This event has finished</p>
+        <p className="t-figure mt-2 text-3xl">{event.attendeeCount}</p>
+        <p className="t-small text-muted">people attended</p>
+        <p className="t-micro mt-4 text-subtle">Attendance is permanently recorded. See what happened in the description.</p>
+      </>
+    );
   }
 
   return (

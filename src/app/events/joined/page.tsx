@@ -12,6 +12,7 @@ import { mastheadSecondary, PageHeader } from "@/components/ui/page-header";
 import { EmptyState, Skeleton } from "@/components/ui/states";
 import { ApiError } from "@/lib/api";
 import type { EventItem } from "@/lib/events";
+import { isPast } from "@/lib/events";
 import { getJoinedEvents, leaveEvent } from "@/lib/joins-api";
 
 export default function JoinedEventsPage() {
@@ -57,6 +58,9 @@ export default function JoinedEventsPage() {
     }
   }
 
+  const upcoming = events.filter((e) => !isPast(e));
+  const past = events.filter((e) => isPast(e));
+
   return (
     <>
       <Navbar />
@@ -90,22 +94,46 @@ export default function JoinedEventsPage() {
               ))}
             </div>
           ) : events.length ? (
-            <div className="border-t border-rule">
-              {events.map((event) => (
-                <div className="flex flex-col gap-3 border-b border-rule py-4 sm:flex-row sm:items-center sm:justify-between" key={event.id}>
-                  <div className="min-w-0 flex-1">
-                    <EventRow event={event} />
+            <div className="space-y-10">
+              {upcoming.length > 0 && (
+                <section>
+                  <p className="t-label mb-4 border-b border-rule pb-3">Coming up — {upcoming.length}</p>
+                  <div className="border-t border-rule">
+                    {upcoming.map((event) => (
+                      <div className="flex flex-col gap-3 border-b border-rule py-4 sm:flex-row sm:items-center sm:justify-between" key={event.id}>
+                        <div className="min-w-0 flex-1">
+                          <EventRow event={event} />
+                        </div>
+                        <button
+                          className="t-small shrink-0 border border-danger px-3 py-2 text-danger hover:bg-danger-soft disabled:opacity-60"
+                          type="button"
+                          disabled={leaving === event.id}
+                          onClick={() => void leave(event.id)}
+                        >
+                          {leaving === event.id ? "Leaving." : "Leave"}
+                        </button>
+                      </div>
+                    ))}
                   </div>
-                  <button
-                    className="t-small shrink-0 border border-danger px-3 py-2 text-danger hover:bg-danger-soft disabled:opacity-60"
-                    type="button"
-                    disabled={leaving === event.id}
-                    onClick={() => void leave(event.id)}
-                  >
-                    {leaving === event.id ? "Leaving." : "Leave"}
-                  </button>
-                </div>
-              ))}
+                </section>
+              )}
+              {past.length > 0 && (
+                <section>
+                  <p className="t-label mb-4 border-b border-rule pb-3">Already done — {past.length}</p>
+                  <div className="border-t border-rule">
+                    {past.map((event) => (
+                      <div className="flex flex-col gap-3 border-b border-rule py-4 sm:flex-row sm:items-center sm:justify-between" key={event.id}>
+                        <div className="min-w-0 flex-1">
+                          <EventRow event={event} />
+                        </div>
+                        <span className="t-label shrink-0 border border-rule px-3 py-2 text-subtle">
+                          Attended
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
             </div>
           ) : (
             <EmptyState

@@ -9,7 +9,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { PageHeader } from "@/components/ui/page-header";
 import { EmptyState } from "@/components/ui/states";
 import type { EventItem } from "@/lib/events";
-import { formatDateParts } from "@/lib/events";
+import { formatDateParts, isPast } from "@/lib/events";
 import { apiFetch, ApiError } from "@/lib/api";
 
 export function EventDetail({ id }: { id: string }) {
@@ -71,12 +71,16 @@ export function EventDetail({ id }: { id: string }) {
 
 function EventContent({ event }: { event: EventItem }) {
   const date = formatDateParts(event.date);
+  const past = isPast(event);
   return (
     <>
       <PageHeader
-        eyebrow={event.type}
+        eyebrow={past ? `${event.type} · Completed` : event.type}
         title={event.title}
-        back={{ href: "/events", label: "Back to events" }}
+        back={past
+          ? { href: "/events/past", label: "Back to archive" }
+          : { href: "/events", label: "Back to events" }
+        }
         meta={
           <div className="grid gap-2 sm:grid-cols-3">
             <div>
