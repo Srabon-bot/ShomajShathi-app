@@ -126,7 +126,7 @@ function RegisterForm() {
       >
         <Input id="image" type="url" autoComplete="photo" placeholder="https://example.com/photo.jpg" {...form.register("image")} />
       </Field>
-      <Field label="Password" htmlFor="register-password" required hint="At least 6 characters." error={form.formState.errors.password?.message}>
+      <Field label="Password" htmlFor="register-password" required hint="At least 6 characters, including an uppercase and a lowercase letter." error={form.formState.errors.password?.message}>
         <Input id="register-password" type="password" autoComplete="new-password" placeholder="Choose a password" {...form.register("password")} />
       </Field>
       <Field label="Confirm password" htmlFor="confirm-password" required error={form.formState.errors.confirmPassword?.message}>
