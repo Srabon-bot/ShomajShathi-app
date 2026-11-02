@@ -16,20 +16,20 @@ export default function Home() {
     <>
       <Navbar />
       <main>
-        <section className="border-b border-rule bg-foreground text-background">
+        <section className="border-b border-rule bg-hero text-hero-foreground">
           <div className="shell flex min-h-[70svh] flex-col justify-end gap-8 py-20 md:py-28">
             <p className="t-label text-brand">Dhaka · Community service</p>
             <div className="max-w-3xl">
               <h1 className="t-mega">Show up. That&apos;s the whole thing.</h1>
-              <p className="t-lead mt-6 max-w-xl text-background/75">Plan a cleanup, plant a hundred saplings, or collect winter clothes with people who live nearby.</p>
+              <p className="t-lead mt-6 max-w-xl text-hero-muted">Plan a cleanup, plant a hundred saplings, or collect winter clothes with people who live nearby.</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link className="inline-flex min-h-11 items-center justify-center rounded-md bg-brand px-5 text-sm font-bold text-brand-foreground hover:bg-brand-hover" href="/events">Browse events</Link>
-              <Link className="inline-flex min-h-11 items-center justify-center rounded-md border border-background px-5 text-sm font-bold text-background" href="/events/new">Create an event</Link>
+              <Link className="inline-flex min-h-11 items-center justify-center rounded-md border border-hero-foreground px-5 text-sm font-bold text-hero-foreground hover:bg-hero-foreground hover:text-hero" href="/events/new">Create an event</Link>
             </div>
           </div>
         </section>
-        <section className="border-b border-rule bg-sun py-12 md:py-16">
+        <section className="border-b border-rule bg-band py-12 text-band-foreground md:py-16">
           <div className="shell">
             <p className="t-label">Upcoming events</p>
             <h2 className="t-h2 mt-4">Find the next useful thing to do.</h2>
