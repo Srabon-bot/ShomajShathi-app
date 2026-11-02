@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { EventForm } from "@/components/events/event-form";
+import { OrganiserChecklist } from "@/components/events/organiser-checklist";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { PageHeader } from "@/components/ui/page-header";
@@ -27,18 +28,24 @@ export default function NewEventPage() {
             </div>
           }
         />
-        <div className="shell section max-w-3xl">
-          <div className="border border-rule bg-surface p-5 sm:p-7">
-            <EventForm submitLabel="Create event" onSubmit={async (values) => {
-              try {
-                await createEvent(values);
-                toast.success("Event created.");
-                router.push("/events");
-                router.refresh();
-              } catch (reason) {
-                toast.error(reason instanceof Error ? reason.message : "The event could not be created.");
-              }
-            }} />
+        <div className="shell section">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem]">
+            <div className="border border-rule bg-surface p-5 sm:p-7">
+              <EventForm
+                submitLabel="Create event"
+                onSubmit={async (values) => {
+                  try {
+                    await createEvent(values);
+                    toast.success("Event created.");
+                    router.push("/events");
+                    router.refresh();
+                  } catch (reason) {
+                    toast.error(reason instanceof Error ? reason.message : "The event could not be created.");
+                  }
+                }}
+              />
+            </div>
+            <OrganiserChecklist />
           </div>
         </div>
       </main>

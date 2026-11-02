@@ -53,7 +53,7 @@ export function EventForm({
           <Input id="location" {...form.register("location")} />
         </Field>
       </div>
-      {image && /^https?:\/\//.test(image) && <img className="aspect-[4/1] w-full object-cover" src={image} alt="Event preview" />}
+      {image && /^https?:\/\//.test(image) && <img className="aspect-[16/9] sm:aspect-[4/1] w-full object-cover" src={image} alt="Event preview" />}
       <div className="grid gap-7 md:grid-cols-2">
         <Field label="Date and time" htmlFor="date" required error={form.formState.errors.date?.message}>
           <Input id="date" type="datetime-local" {...form.register("date")} />
@@ -62,7 +62,7 @@ export function EventForm({
           <Input id="capacity" type="number" min={1} max={1000} {...form.register("capacity", { valueAsNumber: true })} />
         </Field>
       </div>
-      <Button type="submit" loading={form.formState.isSubmitting}>{submitLabel}</Button>
+      <Button type="submit" loading={form.formState.isSubmitting} className="w-full sm:w-auto">{submitLabel}</Button>
     </form>
   );
 }

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { EventForm, toDateTimeLocal } from "@/components/events/event-form";
+import { OrganiserChecklist } from "@/components/events/organiser-checklist";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { PageHeader } from "@/components/ui/page-header";
@@ -77,9 +78,12 @@ export default function EditEventPage() {
             </div>
           }
         />
-        <div className="shell section max-w-3xl">
-          <div className="border border-rule bg-surface p-5 sm:p-7">
-            <EventForm defaultValues={{ ...event, date: toDateTimeLocal(event.date) }} submitLabel="Save changes" onSubmit={async (values) => { try { await updateEvent(event.id, values); toast.success("Event updated."); router.push("/events/manage"); router.refresh(); } catch (reason) { toast.error(reason instanceof Error ? reason.message : "The event could not be updated."); } }} />
+        <div className="shell section">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem]">
+            <div className="border border-rule bg-surface p-5 sm:p-7">
+              <EventForm defaultValues={{ ...event, date: toDateTimeLocal(event.date) }} submitLabel="Save changes" onSubmit={async (values) => { try { await updateEvent(event.id, values); toast.success("Event updated."); router.push("/events/manage"); router.refresh(); } catch (reason) { toast.error(reason instanceof Error ? reason.message : "The event could not be updated."); } }} />
+            </div>
+            <OrganiserChecklist />
           </div>
         </div>
       </main>
