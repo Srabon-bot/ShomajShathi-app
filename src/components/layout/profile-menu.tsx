@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarCheck, LogOut, UserRound } from "lucide-react";
+import { CalendarCheck, CalendarPlus, LogOut, UserRound } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -61,6 +61,7 @@ export function ProfileMenu() {
         <button
           type="button"
           aria-label="Open account menu"
+          title={user.name || "Community member"}
           className="inline-flex size-10 items-center justify-center rounded-full border border-rule-soft hover:bg-surface"
         >
           <Avatar>
@@ -75,6 +76,12 @@ export function ProfileMenu() {
           <p className="t-micro max-w-52 truncate text-muted">{user.email}</p>
         </div>
         <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link href="/events/new">
+            <CalendarPlus aria-hidden="true" className="size-4" />
+            Create event
+          </Link>
+        </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href="/events/joined">
             <CalendarCheck aria-hidden="true" className="size-4" />

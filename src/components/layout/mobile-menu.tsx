@@ -15,6 +15,7 @@ const links = [
 ];
 
 const memberLinks = [
+  { href: "/events/new", label: "Create event" },
   { href: "/events/joined", label: "Joined events" },
   { href: "/events/manage", label: "My events" },
   { href: "/profile", label: "Profile" },
