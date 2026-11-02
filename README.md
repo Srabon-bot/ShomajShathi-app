@@ -1,27 +1,14 @@
 <div align="center">
 
-<br />
-
 # Shomaj Shathi
 
 A civic events platform for organising and joining community service work in Dhaka — cleanups, plantations, donation drives, and education circles.
 
-<br />
-
 [![Live Site](https://img.shields.io/badge/Live%20Site-shomajshathi--app.vercel.app-22c55e?style=for-the-badge&logo=vercel&logoColor=white)](https://shomajshathi-app.vercel.app)
 &nbsp;
-[![API](https://img.shields.io/badge/API-shomajshathi--server.vercel.app-6366f1?style=for-the-badge&logo=express&logoColor=white)](https://shomajshathi-server.vercel.app)
-
-<br />
-
-![Next.js](https://img.shields.io/badge/Next.js%2016-000000?style=flat-square&logo=nextdotjs&logoColor=white)
-![React](https://img.shields.io/badge/React%2019-61DAFB?style=flat-square&logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS%204-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB%20Atlas-47A248?style=flat-square&logo=mongodb&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
-
-<br />
+[![Live API](https://img.shields.io/badge/Live%20API-shomajshathi--server.vercel.app-6366f1?style=for-the-badge&logo=express&logoColor=white)](https://shomajshathi-server.vercel.app)
+&nbsp;
+[![API Repository](https://img.shields.io/badge/API%20Repo-ShomajShathi--server-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Srabon-bot/ShomajShathi-server)
 
 </div>
 
@@ -29,7 +16,9 @@ A civic events platform for organising and joining community service work in Dha
 
 ## Overview
 
-Community service in Dhaka is organised through WhatsApp groups and Facebook posts — events get lost, attendance is unknown, and there is no record of what was done. Shomaj Shathi gives organisers and participants one place to create an event, find it, join it, and track their history. The interface is designed to look printed and civic rather than template-generated.
+Community service in Dhaka is organised through WhatsApp groups and Facebook posts — events get lost, attendance is unknown, and there is no record of what was done. Shomaj Shathi gives organisers and participants one place to create an event, find it, join it, and track their history.
+
+**Live site:** [https://shomajshathi-app.vercel.app](https://shomajshathi-app.vercel.app)
 
 ---
 
@@ -80,18 +69,18 @@ Community service in Dhaka is organised through WhatsApp groups and Facebook pos
 
 | Layer | Technology |
 |---|---|
-| Framework | Next.js 16 — App Router, Server Components, middleware |
-| UI library | React 19 |
-| Language | TypeScript throughout, client and server |
-| Styling | Tailwind CSS v4 |
-| Components | Hand-built design system on shadcn/ui and Radix UI primitives |
-| Authentication | BetterAuth — email/password, Google, GitHub, JWT/JWKS |
-| Database | MongoDB Atlas via the native Node.js driver |
-| Forms | React Hook Form with Zod schema validation |
-| Carousel | Embla Carousel with autoplay |
-| Icons | Lucide React |
-| Notifications | Sonner |
-| Hosting | Vercel |
+| Framework | ![Next.js](https://img.shields.io/badge/Next.js%2016-000000?style=flat-square&logo=nextdotjs&logoColor=white) App Router, Server Components, middleware |
+| UI library | ![React](https://img.shields.io/badge/React%2019-61DAFB?style=flat-square&logo=react&logoColor=black) |
+| Language | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) |
+| Styling | ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS%204-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white) |
+| Components | ![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000000?style=flat-square&logo=shadcnui&logoColor=white) ![Radix UI](https://img.shields.io/badge/Radix%20UI-5B5BD6?style=flat-square&logo=radixui&logoColor=white) |
+| Authentication | ![BetterAuth](https://img.shields.io/badge/BetterAuth-6366F1?style=flat-square&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAxYTUgNSAwIDAgMC01IDV2M0g2YTIgMiAwIDAgMC0yIDJ2MTBhMiAyIDAgMCAwIDIgMmgxMmEyIDIgMCAwIDAgMi0yVjExYTIgMiAwIDAgMC0yLTJoLTFWNmE1IDUgMCAwIDAtNS01em0tMyA1YTMgMyAwIDAgMSA2IDB2M0g5VjZ6Ii8+PC9zdmc+) ![JWT](https://img.shields.io/badge/JWT-D63AFF?style=flat-square&logo=jsonwebtokens&logoColor=white) Email/password, Google, GitHub |
+| Database | ![MongoDB](https://img.shields.io/badge/MongoDB%20Atlas-47A248?style=flat-square&logo=mongodb&logoColor=white) |
+| Forms | ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-EC5990?style=flat-square&logo=reacthookform&logoColor=white) ![Zod](https://img.shields.io/badge/Zod-3068B7?style=flat-square&logo=zod&logoColor=white) |
+| Carousel | ![Embla Carousel](https://img.shields.io/badge/Embla%20Carousel-8A4FFF?style=flat-square&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxyZWN0IHg9IjIiIHk9IjYiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxMiIgcng9IjIiLz48cmVjdCB4PSIxOCIgeT0iOCIgd2lkdGg9IjQiIGhlaWdodD0iOCIgcng9IjEiIG9wYWNpdHk9Ii42Ii8+PC9zdmc+) |
+| Icons | ![Lucide](https://img.shields.io/badge/Lucide%20React-F56565?style=flat-square&logo=lucide&logoColor=white) |
+| Notifications | ![Sonner](https://img.shields.io/badge/Sonner-F59E0B?style=flat-square&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik00IDVoMTZhMiAyIDAgMCAxIDIgMnY2YTIgMiAwIDAgMS0yIDJoLTZsLTQgNHYtNEg0YTIgMiAwIDAgMS0yLTJWN2EyIDIgMCAwIDEgMi0yeiIvPjwvc3ZnPg==) |
+| Hosting | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white) |
 
 ---
 
@@ -107,7 +96,6 @@ Community service in Dhaka is organised through WhatsApp groups and Facebook pos
 | `/events/past` | Archive of completed events |
 | `/login` | Email, Google, and GitHub sign-in |
 | `/register` | Account creation |
-| `/styleguide` | Full design system reference |
 
 **Signed-in only**
 
@@ -121,37 +109,9 @@ Community service in Dhaka is organised through WhatsApp groups and Facebook pos
 
 ---
 
-## Project Structure
+## Authentication
 
-```
-client/
-├── src/
-│   ├── app/                          # Next.js App Router pages
-│   │   ├── (auth)/                   # Login and register (shared layout)
-│   │   ├── events/                   # Events pages and nested routes
-│   │   │   ├── [id]/                 # Detail and edit pages
-│   │   │   ├── joined/
-│   │   │   ├── manage/
-│   │   │   ├── new/
-│   │   │   └── past/
-│   │   ├── profile/
-│   │   ├── styleguide/
-│   │   ├── api/auth/[...all]/        # BetterAuth route handler
-│   │   ├── layout.tsx
-│   │   └── page.tsx                  # Home page
-│   ├── components/
-│   │   ├── auth/                     # Auth forms, social provider buttons
-│   │   ├── events/                   # Cards, rows, forms, join button, dialogs
-│   │   ├── home/                     # Hero sections, carousel, area index
-│   │   ├── layout/                   # Navbar, footer, mobile menu, profile menu
-│   │   ├── profile/                  # Profile form
-│   │   └── ui/                       # Design system primitives
-│   ├── lib/                          # API clients, auth helpers, validation schemas
-│   └── proxy.ts                      # Middleware — redirects unauthenticated visitors
-├── public/
-├── .env.example
-└── package.json
-```
+Signed-in pages get a short-lived JWT from BetterAuth and send it to the Express API as `Authorization: Bearer <token>`. The API verifies it against the client's JWKS endpoint, and `src/proxy.ts` redirects unauthenticated visitors from protected routes to `/login`.
 
 ---
 
@@ -160,84 +120,27 @@ client/
 **Prerequisites:** Node.js 20+, a MongoDB Atlas cluster, and optionally Google and GitHub OAuth apps.
 
 ```powershell
-# Install dependencies
 npm ci
-
-# Copy the environment template
 Copy-Item .env.example .env.local
-
-# Start the development server
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-**Scripts**
-
-| Command | Description |
-|---|---|
-| `npm run dev` | Development server with Turbopack |
-| `npm run build` | Production build |
-| `npm start` | Run the production build |
-| `npm run lint` | ESLint |
-| `npm run typecheck` | TypeScript type-check without emitting |
-
----
-
-## Environment Variables
-
-Copy `.env.example` to `.env.local` and fill in the values.
+Fill in `.env.local`:
 
 ```env
-# API URL — points at your running Express server
 NEXT_PUBLIC_API_URL=http://localhost:5000
-
-# Client origin — must match BETTER_AUTH_URL exactly
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 BETTER_AUTH_URL=http://localhost:3000
 BETTER_AUTH_SECRET=<random 32+ character string>
 
-# MongoDB — used by BetterAuth for session storage
 MONGODB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net
 MONGODB_DB=shomaj_shathi
 
-# Social login — leave blank to hide the provider buttons
+# Leave blank to hide the social login buttons
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
 ```
-
-OAuth callback URLs to register with each provider:
-
-| Provider | Callback URL |
-|---|---|
-| Google | `<BETTER_AUTH_URL>/api/auth/callback/google` |
-| GitHub | `<BETTER_AUTH_URL>/api/auth/callback/github` |
-
----
-
-## Authentication Flow
-
-Signed-in pages obtain a short-lived JWT from `authClient.token()` and send it to the Express API as `Authorization: Bearer <token>`. The API verifies the token against the client's public JWKS endpoint at `<BETTER_AUTH_URL>/api/auth/jwks`. The middleware in `src/proxy.ts` redirects unauthenticated visitors from protected routes to `/login?next=…` and restores them after sign-in.
-
----
-
-## Deployment Checklist
-
-- [ ] Vercel build command: `npm ci && npm run build`
-- [ ] Set `NEXT_PUBLIC_API_URL` to the deployed server URL before the build runs
-- [ ] Set `BETTER_AUTH_URL` to the exact deployed client origin (no trailing slash)
-- [ ] Confirm `CLIENT_ORIGIN` on the server matches `BETTER_AUTH_URL`
-- [ ] Configure all environment variables in Vercel before triggering the first build
-- [ ] Update OAuth app callback URLs to the deployed origin
-- [ ] Smoke-test reloading `/`, `/events`, `/events/<id>`, `/events/manage`, and `/profile`
-- [ ] Never commit `.env.local` or any credentials
-
----
-
-<div align="center">
-
-[shomajshathi-app.vercel.app](https://shomajshathi-app.vercel.app)
-
-</div>
