@@ -8,6 +8,7 @@ import { EventRow } from "@/components/events/event-row";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { Button } from "@/components/ui/button";
+import { mastheadSecondary, PageHeader } from "@/components/ui/page-header";
 import { EmptyState, Skeleton } from "@/components/ui/states";
 import { ApiError } from "@/lib/api";
 import type { EventItem } from "@/lib/events";
@@ -59,39 +60,37 @@ export default function JoinedEventsPage() {
   return (
     <>
       <Navbar />
-      <main className="section">
-        <div className="shell">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="t-label text-brand">Your calendar</p>
-              <h1 className="t-mega mt-2">Joined.</h1>
+      <main>
+        <PageHeader
+          eyebrow="Your calendar"
+          title="Joined."
+          description="Every cleanup, plantation and drive you said yes to. Leave an event if your plans change."
+          action={<Link className={mastheadSecondary} href="/events">Find more events</Link>}
+          meta={
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="t-label">Sorted by date</span>
+              <span className="t-label">
+                {loading ? "Loading" : `${events.length} ${events.length === 1 ? "event" : "events"}`}
+              </span>
             </div>
-            <Link
-              className="inline-flex min-h-11 items-center rounded-md border border-rule px-5 text-sm font-bold text-foreground hover:bg-foreground hover:text-background"
-              href="/events"
-            >
-              Find more events
-            </Link>
-          </div>
-          <p className="t-lead mt-4 max-w-2xl">
-            Every cleanup, plantation and drive you said yes to. Leave an event if your plans change.
-          </p>
-
+          }
+        />
+        <div className="shell section">
           {error ? (
-            <div className="mt-8 space-y-3 border border-danger bg-danger-soft p-4">
+            <div className="space-y-3 border border-danger bg-danger-soft p-4">
               <p className="t-small text-danger">{error}</p>
               <Button size="sm" variant="secondary" onClick={reload}>
                 Try again
               </Button>
             </div>
           ) : loading ? (
-            <div className="mt-8 space-y-2" aria-busy="true" aria-label="Loading joined events">
+            <div className="space-y-2" aria-busy="true" aria-label="Loading joined events">
               {Array.from({ length: 3 }, (_, index) => (
                 <Skeleton className="h-20" key={index} />
               ))}
             </div>
           ) : events.length ? (
-            <div className="mt-8 border-t border-rule">
+            <div className="border-t border-rule">
               {events.map((event) => (
                 <div className="flex flex-col gap-3 border-b border-rule py-4 sm:flex-row sm:items-center sm:justify-between" key={event.id}>
                   <div className="min-w-0 flex-1">
@@ -103,26 +102,24 @@ export default function JoinedEventsPage() {
                     disabled={leaving === event.id}
                     onClick={() => void leave(event.id)}
                   >
-                    {leaving === event.id ? "Leaving…" : "Leave"}
+                    {leaving === event.id ? "Leaving." : "Leave"}
                   </button>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="mt-8">
-              <EmptyState
-                title="No joined events yet"
-                description="Browse upcoming work around Dhaka and join the one that fits your week."
-                action={
-                  <Link
-                    className="inline-flex min-h-11 items-center rounded-md bg-foreground px-5 text-sm font-bold text-background"
-                    href="/events"
-                  >
-                    Browse events
-                  </Link>
-                }
-              />
-            </div>
+            <EmptyState
+              title="No joined events yet"
+              description="Browse upcoming work around Dhaka and join the one that fits your week."
+              action={
+                <Link
+                  className="inline-flex min-h-11 items-center rounded-md bg-foreground px-5 text-sm font-bold text-background"
+                  href="/events"
+                >
+                  Browse events
+                </Link>
+              }
+            />
           )}
         </div>
       </main>

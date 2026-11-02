@@ -58,45 +58,47 @@ export function EventsBrowser() {
 
   return (
     <>
-      <div className="flex flex-col gap-3 border-y border-rule py-4 sm:flex-row">
-        <input
-          aria-label="Search events"
-          className="h-11 max-w-sm border-b border-rule-soft bg-transparent px-0 text-sm"
-          placeholder="Search events"
-          value={query}
-          onChange={(event) => { startRequest(); setQuery(event.target.value); setPage(1); }}
-        />
-        <select
-          aria-label="Filter by event type"
-          className="h-11 border-b border-rule-soft bg-transparent px-0 text-sm sm:w-48"
-          value={type}
-          onChange={(event) => { startRequest(); setType(event.target.value as EventType | ""); setPage(1); }}
-        >
-          <option value="">All types</option>
-          {eventTypes.map((eventType) => <option key={eventType}>{eventType}</option>)}
-        </select>
+      <div className="border-b border-rule bg-band text-band-foreground">
+        <div className="shell flex flex-col gap-3 py-3 sm:flex-row sm:items-center">
+          <input
+            aria-label="Search events"
+            className="h-11 max-w-sm border-b border-band-foreground/40 bg-transparent px-0 text-sm placeholder:text-band-foreground/60"
+            placeholder="Search events"
+            value={query}
+            onChange={(event) => { startRequest(); setQuery(event.target.value); setPage(1); }}
+          />
+          <select
+            aria-label="Filter by event type"
+            className="h-11 border-b border-band-foreground/40 bg-transparent px-0 text-sm sm:w-48"
+            value={type}
+            onChange={(event) => { startRequest(); setType(event.target.value as EventType | ""); setPage(1); }}
+          >
+            <option value="">All types</option>
+            {eventTypes.map((eventType) => <option key={eventType}>{eventType}</option>)}
+          </select>
+        </div>
       </div>
-      {error ? (
-        <div className="mt-8 space-y-3 border border-danger bg-danger-soft p-4">
-          <p className="t-small text-danger">{error}</p>
-          <Button size="sm" variant="secondary" onClick={() => { startRequest(); setReloadKey((current) => current + 1); }}>Try again</Button>
-        </div>
-      ) : loading && !events.length ? (
-        <div aria-busy="true" aria-label="Loading events" className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-          {Array.from({ length: 6 }, (_, index) => <Skeleton className="aspect-[4/3]" key={index} />)}
-        </div>
-      ) : events.length ? (
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">{events.map((event) => <EventCard event={event} key={event.id} />)}</div>
-      ) : (
-        <div className="mt-8">
+      <div className="shell section">
+        {error ? (
+          <div className="space-y-3 border border-danger bg-danger-soft p-4">
+            <p className="t-small text-danger">{error}</p>
+            <Button size="sm" variant="secondary" onClick={() => { startRequest(); setReloadKey((current) => current + 1); }}>Try again</Button>
+          </div>
+        ) : loading && !events.length ? (
+          <div aria-busy="true" aria-label="Loading events" className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            {Array.from({ length: 6 }, (_, index) => <Skeleton className="aspect-[4/3]" key={index} />)}
+          </div>
+        ) : events.length ? (
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">{events.map((event) => <EventCard event={event} key={event.id} />)}</div>
+        ) : (
           <EmptyState
             title={hasFilters ? "No events match those filters" : "No events found"}
             description={hasFilters ? "Try a different search word or browse every event type." : "New community events will appear here as organisers publish them."}
             action={hasFilters ? <Button size="sm" variant="secondary" onClick={clearFilters}>Clear filters</Button> : undefined}
           />
-        </div>
-      )}
-      {meta.totalPages > 1 && <div className="mt-8 flex items-center justify-between border-t border-rule py-4"><button className="t-label disabled:text-subtle" disabled={page <= 1 || loading} onClick={() => { startRequest(); setPage((current) => current - 1); }}>Previous</button><span className="t-label">Page {meta.page} / {meta.totalPages}</span><button className="t-label disabled:text-subtle" disabled={page >= meta.totalPages || loading} onClick={() => { startRequest(); setPage((current) => current + 1); }}>Next</button></div>}
+        )}
+        {meta.totalPages > 1 && <div className="mt-8 flex items-center justify-between border-t border-rule py-4"><button className="t-label disabled:text-subtle" disabled={page <= 1 || loading} onClick={() => { startRequest(); setPage((current) => current - 1); }}>Previous</button><span className="t-label">Page {meta.page} / {meta.totalPages}</span><button className="t-label disabled:text-subtle" disabled={page >= meta.totalPages || loading} onClick={() => { startRequest(); setPage((current) => current + 1); }}>Next</button></div>}
+      </div>
     </>
   );
 }
