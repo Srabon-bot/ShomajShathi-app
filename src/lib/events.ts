@@ -16,6 +16,23 @@ export interface EventItem {
   createdAt: string;
 }
 
+/** True once the start time has passed. Dates are ISO strings from the API. */
+export function isPast(event: { date: string }) {
+  return new Date(event.date).getTime() < Date.now();
+}
+
+/** Human-readable distance into the past, e.g. "6 days ago". */
+export function formatTimeSince(iso: string) {
+  const days = Math.round((Date.now() - new Date(iso).getTime()) / 86_400_000);
+  if (days <= 0) return "Today";
+  if (days === 1) return "Yesterday";
+  if (days < 30) return `${days} days ago`;
+  const months = Math.round(days / 30);
+  if (months < 12) return `${months} ${months === 1 ? "month" : "months"} ago`;
+  const years = Math.round(days / 365);
+  return `${years} ${years === 1 ? "year" : "years"} ago`;
+}
+
 export function formatDateParts(iso: string) {
   const date = new Date(iso);
   const parts = new Intl.DateTimeFormat("en-GB", {

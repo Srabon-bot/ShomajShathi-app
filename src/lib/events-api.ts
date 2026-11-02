@@ -28,3 +28,14 @@ export function getMyEvents() {
 export function getEvent(id: string) {
   return apiFetch<EventItem>(`/api/events/${id}`);
 }
+
+export interface EventStats {
+  pastEvents: number;
+  upcomingEvents: number;
+  volunteers: number;
+  nextEventDate: string | null;
+}
+
+export function getEventStats() {
+  return apiFetch<EventStats>("/api/events/stats");
+}
