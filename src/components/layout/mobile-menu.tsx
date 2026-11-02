@@ -10,6 +10,7 @@ import { authClient } from "@/lib/auth-client";
 
 const links = [
   { href: "/events", label: "Upcoming events" },
+  { href: "/events/past", label: "Past events" },
   { href: "/#gallery", label: "Gallery" },
   { href: "/#about", label: "About" },
 ];

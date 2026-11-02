@@ -26,37 +26,37 @@
   --hero-muted: rgb(255 255 255 / 0.75);
   --band: #f5ee45;
   --band-foreground: #0b0b0b;
-  --footer: #ffffff;
+  --footer: #f3f0e7;
   --overlay: rgb(11 11 11 / 0.6);
   color-scheme: light;
 }
 
 .dark,
 .theme-dark {
-  --background: #0b0b0a;
-  --surface: #1e1e1b;
-  --sand: #262219;
-  --sun: #e8df3a;
-  --foreground: #f2efe8;
-  --muted: #a19d93;
+  --background: #11120e;
+  --surface: #1c1d16;
+  --sand: #29291d;
+  --sun: #f0e94a;
+  --foreground: #eae4d5;
+  --muted: #a8a295;
   --subtle: #8a857b;
-  --rule: #33332e;
-  --rule-soft: #3f3f38;
+  --rule: #363628;
+  --rule-soft: #424232;
   --rule-sand: #4a4230;
-  --brand: #ff7a1a;
-  --brand-hover: #ff9346;
-  --brand-ink: #ff9a55;
-  --brand-foreground: #0b0b0a;
+  --brand: #ff7626;
+  --brand-hover: #e8661b;
+  --brand-ink: #ff853b;
+  --brand-foreground: #11120e;
   --danger: #ff8a7a;
   --danger-soft: #2c1714;
-  --ring: #f2efe8;
-  --hero: #0b0b0a;
-  --hero-foreground: #f2efe8;
-  --hero-muted: #a19d93;
-  --band: #161614;
-  --band-foreground: #f2efe8;
-  --footer: #161614;
-  --overlay: rgb(0 0 0 / 0.72);
+  --ring: #eae4d5;
+  --hero: #11120e;
+  --hero-foreground: #eae4d5;
+  --hero-muted: #a8a295;
+  --band: #171810;
+  --band-foreground: #eae4d5;
+  --footer: #1c1d16;
+  --overlay: rgb(0 0 0 / 0.75);
   color-scheme: dark;
 }
 
@@ -117,26 +117,29 @@
 }
 
 @layer components {
-  .t-mega { font-family: var(--font-display); font-size: clamp(3rem, 10.5vw, 9rem); line-height: .84; letter-spacing: -.045em; font-weight: 400; text-transform: uppercase; }
-  .t-display { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: .88; letter-spacing: -.04em; font-weight: 400; text-transform: uppercase; }
-  .t-h2 { font-family: var(--font-display); font-size: clamp(1.875rem, 3.2vw, 2.75rem); line-height: .92; letter-spacing: -.035em; font-weight: 400; text-transform: uppercase; }
-  .t-h3 { font-family: var(--font-sans); font-size: clamp(1.25rem, 1.6vw, 1.5rem); line-height: 1.12; letter-spacing: -.02em; font-weight: 700; text-transform: uppercase; }
-  .t-h4 { font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.3; letter-spacing: -.01em; font-weight: 700; text-transform: uppercase; }
-  .t-lead { font-size: clamp(1.0625rem, .95rem + .35vw, 1.25rem); line-height: 1.5; letter-spacing: -.01em; color: var(--muted); }
+  .t-mega { font-family: var(--font-display); font-size: clamp(2.25rem, 8.5vw, 8.5rem); line-height: .88; letter-spacing: -.045em; font-weight: 400; text-transform: uppercase; overflow-wrap: break-word; }
+  .t-display { font-family: var(--font-display); font-size: clamp(1.875rem, 5.5vw, 4.25rem); line-height: .92; letter-spacing: -.04em; font-weight: 400; text-transform: uppercase; overflow-wrap: break-word; }
+  .t-h2 { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.75rem); line-height: .95; letter-spacing: -.035em; font-weight: 400; text-transform: uppercase; overflow-wrap: break-word; }
+  .t-h3 { font-family: var(--font-sans); font-size: clamp(1.125rem, 1.6vw, 1.5rem); line-height: 1.15; letter-spacing: -.02em; font-weight: 700; text-transform: uppercase; overflow-wrap: break-word; }
+  .t-h4 { font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.3; letter-spacing: -.01em; font-weight: 700; text-transform: uppercase; overflow-wrap: break-word; }
+  .t-lead { font-size: clamp(1rem, .95rem + .35vw, 1.25rem); line-height: 1.5; letter-spacing: -.01em; color: var(--muted); }
   .t-body { font-size: 1rem; line-height: 1.65; }
   .t-small { font-size: .875rem; line-height: 1.55; }
   .t-micro { font-size: .75rem; line-height: 1.45; }
   .t-label { font-family: var(--font-sans); font-size: .6875rem; line-height: 1.2; letter-spacing: .08em; font-weight: 700; text-transform: uppercase; }
   .t-figure { font-family: var(--font-sans); font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; letter-spacing: -.02em; font-weight: 700; }
-  .shell { width: 100%; max-width: 80rem; margin-inline: auto; padding-inline: 1.25rem; }
-  .section { padding-block: 3rem; }
+  .shell { width: 100%; max-width: 80rem; margin-inline: auto; padding-inline: 1rem; }
+  .section { padding-block: 2.5rem; }
   .skeleton { position: relative; overflow: hidden; background: color-mix(in srgb, var(--foreground) 8%, transparent); }
   .skeleton::after { content: ""; position: absolute; inset: 0; transform: translateX(-100%); background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--foreground) 7%, transparent), transparent); animation: shimmer 1.6s ease-in-out infinite; }
   @keyframes shimmer { 100% { transform: translateX(100%); } }
+  @keyframes carousel-in { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: translateX(0); } }
+  .carousel-slide { animation: carousel-in 240ms ease-out; }
 }
 
+@media (min-width: 640px) { .shell { padding-inline: 1.5rem; } }
 @media (min-width: 768px) { .shell { padding-inline: 2rem; } }
 @media (min-width: 768px) { .section { padding-block: 4rem; } }
 @media (min-width: 1280px) { .shell { padding-inline: 2.5rem; } }
-@media (prefers-reduced-motion: reduce) { .skeleton::after { animation: none; } html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: reduce) { .skeleton::after { animation: none; } .carousel-slide { animation: none; } html { scroll-behavior: auto; } }
 [data-sonner-toaster] { z-index: 100 !important; }
