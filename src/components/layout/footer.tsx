@@ -12,7 +12,7 @@ function XIcon() {
 
 export function Footer() {
   return (
-    <footer className="border-t border-rule bg-surface">
+    <footer className="border-t border-rule bg-surface mt-2">
       <div className="shell grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <p className="font-display text-2xl"><span className="text-foreground">shomaj</span> <span className="text-brand">shathi</span></p>
