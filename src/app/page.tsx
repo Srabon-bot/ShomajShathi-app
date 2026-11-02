@@ -3,6 +3,7 @@ import Link from "next/link";
 import { HomeEvents } from "@/components/home/home-events";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
+import { Input } from "@/components/ui/field";
 
 const features = [
   ["Create it", "Turn a good idea into a clear event that neighbours can find."],
@@ -41,7 +42,7 @@ export default function Home() {
           </div>
         </section>
         <section className="border-y border-rule py-16" id="gallery"><div className="shell grid gap-8 md:grid-cols-2"><div><p className="t-label text-brand-ink">Gallery</p><h2 className="t-h2 mt-4">Small actions, visible change.</h2></div><div className="grid grid-cols-2 gap-2">{["photo-1488521787991-ed7bbaae773c", "photo-1542601906990-b4d3fb778b09", "photo-1532996122724-e3c354a0b15b", "photo-1503676260728-1c00da094a0b"].map((photo) => <img className="aspect-square size-full object-cover" alt="" key={photo} src={`https://images.unsplash.com/${photo}`} />)}</div></div></section>
-        <section className="py-12"><div className="shell flex flex-col gap-5 md:flex-row md:items-center md:justify-between"><div><p className="t-label">Stay close to the work</p><p className="t-lead mt-2">A design-only newsletter for future community updates.</p></div><Link className="inline-flex min-h-11 items-center justify-center rounded-md bg-foreground px-5 text-sm font-bold text-background" href="/events">Explore events</Link></div></section>
+        <section className="py-12"><div className="shell flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div><p className="t-label">Newsletter</p><p className="t-lead mt-2">One short email when new community events open.</p><p className="t-small mt-2 text-muted">Design preview - no emails are stored.</p></div><div className="w-full md:max-w-sm"><label className="t-label" htmlFor="newsletter-email">Email address</label><div className="mt-2 flex items-end gap-3"><Input id="newsletter-email" type="email" autoComplete="email" placeholder="you@example.com" /><button className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-md bg-foreground px-5 text-sm font-bold text-background" type="button">Subscribe</button></div></div></div></section>
       </main>
       <Footer />
     </>
