@@ -34,13 +34,18 @@ Community service in Dhaka is organised through WhatsApp groups and Facebook pos
 ---
 
 ## Screenshots
-
-<!-- Screenshot: Hero + Navbar (home-hero.png) -->
-<!-- Screenshot: Events list grid (events-list.png) -->
-<!-- Screenshot: Event detail page (event-detail.png) -->
-<!-- Screenshot: Login page (auth-login.png) -->
-<!-- Screenshot: Profile dropdown open (profile-menu.png) -->
-<!-- Instructions: see SCREENSHOTS.md in this repo -->
+<div align="center">
+### Home & Navigation
+![Homepage Hero](./public/screenshots/home-hero.png)
+### Events Directory & Search
+![Events Directory](./public/screenshots/events-list.png)
+### Event Detail & Participation
+![Event Detail](./public/screenshots/event-detail.png)
+<br />
+| Authentication (Dark Mode) | Member Menu |
+|:---:|:---:|
+| <img src="./public/screenshots/auth-login.png" width="480" alt="Sign In" /> | <img src="./public/screenshots/profile-menu.png" width="320" alt="Profile Dropdown" /> |
+</div>
 
 ---
 
