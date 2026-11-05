@@ -40,3 +40,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local docs and template assets (kept locally, not shipped to the repo)
+AGENT-WORKFLOW.md
+AGENTS.md
+DESIGN.md
+PRD.md
+public/file.svg
+public/globe.svg
+public/next.svg
+public/vercel.svg
+public/window.svg
